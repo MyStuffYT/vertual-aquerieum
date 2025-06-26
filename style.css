@@ -18,19 +18,20 @@ body {
     transition-duration: 0.3s;
 }
 
-#fishyelements {
+#button-stack {
     position: absolute;
-    top: 100px;
-    left: 20%;
-    opacity: 0%;
+    height: 300px;
 }
 
-#fishyelements.active {
-    position: absolute;
-    top: 100px;
-    left: 20%;
-    opacity: 100%;
+.fishyelements {
+    opacity: 0;
+    transition-duration: 0.3s;
 }
+
+.fishyelements.active {
+    opacity: 1;
+}
+
 
 #fishshop:hover {
     height:200px;
