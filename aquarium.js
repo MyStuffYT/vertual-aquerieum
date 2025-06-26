@@ -1,6 +1,6 @@
 let fishList = [];
 let greedcount = 0;
-
+let maxFish = 3;
 function preload() {
     background = loadImage("aquarium.jpg")
     fishi = loadImage("fish.png");
@@ -9,22 +9,43 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     image(background, 0, 0, width, height);
 }
+
+// fish switch function, easier than manual
+function switchFish(fileName) {
+    fishi = loadImage(fileName);
+}
+
 function draw() {
     image(background, 0, 0, width, height);
-    if (frameCount % 60 === 0) {
-        fishList.push({
-          x: random(width),
-          y: random(height),
-          dx: random(-2, 2),
-          dy: random(-2, 2)
-        });
-      }
+    if (fishList.length === maxFish) {
+        for (let fish of fishList) {
+            if (fish.x > windowWidth || fish.x < 0 || fish.y > windowHeight || fish.y < 0) {
+                fish.x = random(width);
+                fish.y = random(height);
+                fish.dx = random(-2, 2);
+                fish.dy = random(-2, 2);
+            }
+            fish.x += fish.dx;
+            fish.y += fish.dy;
+            
+            image(fishi, fish.x, fish.y, 110, 80);
+        }
+    } else {
+        if (frameCount % 60 === 0) {
+            fishList.push({
+            x: random(width),
+            y: random(height),
+            dx: random(-2, 2),
+            dy: random(-2, 2)
+            });
+        }
 
-    for (let fish of fishList) {
-        fish.x += fish.dx;
-        fish.y += fish.dy;
-    
-        image(fishi, fish.x, fish.y, 80, 50);
+        for (let fish of fishList) {
+            fish.x += fish.dx;
+            fish.y += fish.dy;
+        
+            image(fishi, fish.x, fish.y, 80, 50);
+        }
     }
 }
 
