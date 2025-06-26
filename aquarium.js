@@ -10,11 +10,6 @@ function setup() {
     image(background, 0, 0, width, height);
 }
 
-// fish switch function, easier than manual
-function switchFish(fileName) {
-    fishi = loadImage(fileName);
-}
-
 function draw() {
     image(background, 0, 0, width, height);
     if (fishList.length === maxFish) {
@@ -105,4 +100,8 @@ function takedory() {
     clearFish();
     fishi = loadImage("dory.png");
     greedcount++;
+}
+
+function switchFish(fileName) {
+    fishi = loadImage(fileName);
 }
